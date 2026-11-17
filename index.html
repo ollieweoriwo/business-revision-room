@@ -900,7 +900,9 @@ section:not([hidden]){animation:rise 200ms var(--ease) both}
 .course-option[data-course="al"]{animation-delay:220ms}
 
 /* New flashcard slides up into place; the flip itself stays a transform transition */
-.flip-inner{animation:card-in 260ms var(--ease) both}
+.flashcard{animation:card-in 260ms var(--ease) backwards}
+.flip-inner{transform-style:preserve-3d}
+.flip-face{-webkit-backface-visibility:hidden;backface-visibility:hidden}
 
 /* Quiz feedback */
 .option.wrong{animation:shake 300ms var(--ease-in-out)}
@@ -958,7 +960,7 @@ html.vt-tab.vt-back::view-transition-new(page){animation-name:page-in-back}
 html.vt-card #cards .flashcard{view-transition-name:card}
 html.vt-card::view-transition-old(root){display:none}
 html.vt-card::view-transition-new(root){animation:none}
-html.vt-card .flip-inner{animation:none}
+html.vt-card .flashcard{animation:none}
 html.vt-card::view-transition-group(card){animation:none}
 html.vt-card::view-transition-old(card){animation:card-out 260ms var(--ease-in-out) both}
 html.vt-card::view-transition-new(card){animation:card-next 340ms var(--ease) 60ms both}
@@ -993,7 +995,8 @@ html.vt-card.vt-know::view-transition-new(card),html.vt-card.vt-again::view-tran
 .course-option.tilting .glare{opacity:1}
 
 @media (prefers-reduced-motion:reduce){
-  section:not([hidden]),.enter .hero h2,.enter .hero p,.enter .hero .row,.chooser-intro h1,.chooser-intro p,.chooser-intro .tag,.course-option,.flip-inner,.toast{animation:fade 200ms ease both!important}
+  section:not([hidden]),.enter .hero h2,.enter .hero p,.enter .hero .row,.chooser-intro h1,.chooser-intro p,.chooser-intro .tag,.course-option,.toast{animation:fade 200ms ease both!important}
+  .flashcard{animation:fade 200ms ease backwards!important}
   .option.wrong,.option.correct,.quiz-score,.topic-tile,.examquestion,.formula,.lab-metric,.model-info>div,details.note,.sources-grid>*,.dashboard-grid>*{animation:none!important}
   .read-progress,#confetti{display:none}
   .slide-ind{transition:opacity 150ms ease}
